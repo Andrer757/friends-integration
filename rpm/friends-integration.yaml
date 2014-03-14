@@ -1,0 +1,23 @@
+Name: friends-integration
+Summary: Friends integration plugin
+Version: 0.1
+Release: 1
+Group: Qt/Qt
+URL: http://example.org/
+License: LICENSE
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |-
+  Friends integration plugin allows
+  deeper integration between Friends
+  Facebook client and Sailfish OS
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- Qt5Core
+- Qt5Qml
+- Qt5Contacts
+Requires: []
+Files:
+- '%{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration'
+PkgBR: []
