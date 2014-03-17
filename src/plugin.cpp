@@ -80,6 +80,24 @@
 #include "userinfohelper.h"
 #include "datehelper.h"
 
+#include <QGuiApplication>
+
+// using custom translator so it gets properly removed from qApp when engine is deleted
+class AppTranslator: public QTranslator
+{
+    Q_OBJECT
+public:
+    AppTranslator(QObject *parent)
+        : QTranslator(parent)
+    {
+        qApp->installTranslator(this);
+    }
+
+    virtual ~AppTranslator()
+    {
+        qApp->removeTranslator(this);
+    }
+};
 
 static const char *REASON = "Cannot be created";
 
@@ -122,12 +140,16 @@ public:
     void initializeEngine(QQmlEngine *engine, const char *uri)
     {
         Q_ASSERT(uri == QLatin1String("org.SfietKonstantin.friends.integration"));
-        Q_UNUSED(engine)
         Q_UNUSED(uri)
+        AppTranslator *engineeringEnglish = new AppTranslator(engine);
+        AppTranslator *translator = new AppTranslator(engine);
+        engineeringEnglish->load("friends-engineering-english", "/usr/share/harbour-friends/translations/");
+        translator->load(QLocale(), "friends", "_", "/usr/share/harbour-friends/translations/");
     }
 
     void registerTypes(const char *uri)
     {
+
         Q_ASSERT(uri == QLatin1String("org.SfietKonstantin.friends.integration"));
         qmlRegisterType<NemoContactBridge>(uri, 1, 0, "NemoContactBridge");
         qmlRegisterType<FriendsInvoker>(uri, 1, 0, "FriendsInvoker");
