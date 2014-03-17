@@ -14,10 +14,12 @@ Description: |-
 Configure: none
 Builder: qtc5
 PkgConfigBR:
-- Qt5Core
-- Qt5Qml
 - Qt5Contacts
-Requires: []
+- Qt5Qml
+- Qt5Core
+Requires: - harbour-friends
+- sailfish-components-contacts-qt5 == 0.1.20
 Files:
 - '%{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration'
+- /opt/friends-integration/
 PkgBR: []

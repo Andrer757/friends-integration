@@ -20,9 +20,9 @@ License:    LICENSE
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  friends-integration.yaml
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Contacts)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Core)
 
 %description
 Friends integration plugin allows
@@ -55,8 +55,19 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
+%preun
+# >> preun
+/opt/friends-integration/preun.sh
+# << preun
+
+%post
+# >> post
+/opt/friends-integration/post.sh
+# << post
+
 %files
 %defattr(-,root,root,-)
 %{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration
+/opt/friends-integration/
 # >> files
 # << files

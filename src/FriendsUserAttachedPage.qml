@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Jolla Ltd. <chris.adams@jollamobile.com>
+ * Copyright (C) 2014 Lucien XU <sfietkonstantin@free.fr>
  *
  * You may use this file under the terms of the BSD license as follows:
  *
@@ -12,9 +12,9 @@
  *     notice, this list of conditions and the following disclaimer in
  *     the documentation and/or other materials provided with the
  *     distribution.
- *   * Neither the name of Nemo Mobile nor the names of its contributors
- *     may be used to endorse or promote products derived from this
- *     software without specific prior written permission.
+ *   * The names of its contributors may not be used to endorse or promote
+ *     products derived from this software without specific prior written
+ *     permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,31 +29,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
 
-#include <QtGlobal>
-#include <QtQml>
-#include <QQmlEngine>
-#include <QQmlExtensionPlugin>
-#include "nemocontactbridge.h"
+import QtQuick 2.0
+import Sailfish.Silica 1.0
 
-class Q_DECL_EXPORT FriendsIntegrationPlugin : public QQmlExtensionPlugin
-{
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.SfietKonstantin.friends.integration")
-public:
-    virtual ~FriendsIntegrationPlugin() { }
-
-    void initializeEngine(QQmlEngine *engine, const char *uri)
-    {
-        Q_ASSERT(uri == QLatin1String("org.SfietKonstantin.friends.integration"));
-        Q_UNUSED(engine)
-        Q_UNUSED(uri)
-    }
-
-    void registerTypes(const char *uri)
-    {
-        Q_ASSERT(uri == QLatin1String("org.SfietKonstantin.friends.integration"));
-        qmlRegisterType<NemoContactBridge>(uri, 1, 0, "NemoContactBridge");
-    }
-};
-
-#include "plugin.moc"
+Page {
+    id: container
+    property string facebookId
+}
