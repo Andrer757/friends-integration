@@ -32,7 +32,8 @@ Page {
         property bool attachedPushed: false
         function pushAttached() {
             if (facebookId != "" && !attachedPushed && root.status == PageStatus.Active) {
-                pageStack.pushAttached(friendsUserAttachedPage)
+                var page = pageStack.pushAttached(friendsUserAttachedPage)
+                page.load()
                 attachedPushed = true
             }
         }

@@ -1,0 +1,6 @@
+[submodule "friends"]
+	path = friends
+	url = https://github.com/SfietKonstantin/friends-sailfish.git
+[submodule "social"]
+	path = social
+	url = https://github.com/SfietKonstantin/nemo-qml-plugin-social.git

@@ -34,6 +34,83 @@
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
 #include "nemocontactbridge.h"
+#include "friendsinvoker.h"
+
+// social plugin headers
+#include "socialnetworkinterface.h"
+#include "socialnetworkmodelinterface.h"
+#include "contentiteminterface.h"
+#include "identifiablecontentiteminterface.h"
+#include "filterinterface.h"
+
+// facebook implementation headers
+#include "facebook/facebookinterface.h"
+#include "facebook/facebookitemfilterinterface.h"
+#include "facebook/facebookrelateddatafilterinterface.h"
+#include "facebook/facebookobjectreferenceinterface.h"
+#include "facebook/facebookalbuminterface.h"
+#include "facebook/facebookcommentinterface.h"
+#include "facebook/facebookeventinterface.h"
+#include "facebook/facebookgroupinterface.h"
+#include "facebook/facebooknotificationinterface.h"
+#include "facebook/facebookpageinterface.h"
+#include "facebook/facebookphotointerface.h"
+#include "facebook/facebookpostinterface.h"
+#include "facebook/facebookuserinterface.h"
+#include "facebook/facebooklikeinterface.h"
+
+// Social extra features
+#include "socialextra/alphabeticalsorterinterface.h"
+#include "socialextra/newsfeedfilterinterface.h"
+#include "socialextra/facebookextrapostinterface.h"
+#include "socialextra/typesolverinterface.h"
+#include "socialextra/filterablefacebookrelateddatafilterinterface.h"
+#include "socialextra/eventfilterinterface.h"
+#include "socialextra/facebookextraeventinterface.h"
+#include "socialextra/facebookextrainterface.h"
+#include "socialextra/commentfilterinterface.h"
+
+// Friends plugin
+#include "tokenmanager.h"
+#include "posthelper.h"
+#include "footerhelper.h"
+#include "notificationshelper.h"
+#include "imagehelper.h"
+#include "imagemanager.h"
+#include "userinfohelper.h"
+#include "datehelper.h"
+
+
+static const char *REASON = "Cannot be created";
+
+static QObject *imagemanager_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new ImageManager();
+}
+
+static QObject * datehelper_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new DateHelper();
+}
+
+static QObject * footerhelper_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new FooterHelper();
+}
+
+static QObject * notificationshelper_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new NotificationsHelper();
+}
+
 
 class Q_DECL_EXPORT FriendsIntegrationPlugin : public QQmlExtensionPlugin
 {
@@ -53,6 +130,66 @@ public:
     {
         Q_ASSERT(uri == QLatin1String("org.SfietKonstantin.friends.integration"));
         qmlRegisterType<NemoContactBridge>(uri, 1, 0, "NemoContactBridge");
+        qmlRegisterType<FriendsInvoker>(uri, 1, 0, "FriendsInvoker");
+
+        // Social
+        qmlRegisterUncreatableType<SocialNetworkInterface>(uri, 1, 0, "SocialNetwork", REASON);
+        qmlRegisterUncreatableType<ContentItemInterface>(uri, 1, 0, "ContentItem", REASON);
+        qmlRegisterUncreatableType<IdentifiableContentItemInterface>(uri, 1, 0, "IdentifiableContentItem", REASON);
+        qmlRegisterUncreatableType<FilterInterface>(uri, 1, 0, "Filter", REASON);
+        qmlRegisterUncreatableType<SorterInterface>(uri, 1, 0, "Sorter", REASON);
+
+        // creatable types from the social plugin
+        qmlRegisterType<SocialNetworkModelInterface>(uri, 1, 0, "SocialNetworkModel");
+
+        // creatable types from the facebook implementation
+        qmlRegisterType<FacebookInterface>(uri, 1, 0, "Facebook");
+        qmlRegisterType<FacebookItemFilterInterface>(uri, 1, 0, "FacebookItemFilter");
+        qmlRegisterType<FacebookRelatedDataFilterInterface>(uri, 1, 0, "FacebookRelatedDataFilter");
+        qmlRegisterType<FacebookObjectReferenceInterface>(uri, 1, 0, "FacebookObjectReference");
+        qmlRegisterType<FacebookAlbumInterface>(uri, 1, 0, "FacebookAlbum");
+        qmlRegisterType<FacebookCommentInterface>(uri, 1, 0, "FacebookComment");
+        qmlRegisterType<FacebookEventInterface>(uri, 1, 0, "FacebookEvent");
+        qmlRegisterType<FacebookGroupInterface>(uri, 1, 0, "FacebookGroup");
+        qmlRegisterType<FacebookNotificationInterface>(uri, 1, 0, "FacebookNotification");
+        qmlRegisterType<FacebookPageInterface>(uri, 1, 0, "FacebookPage");
+        qmlRegisterType<FacebookPhotoInterface>(uri, 1, 0, "FacebookPhoto");
+        qmlRegisterType<FacebookPostInterface>(uri, 1, 0, "FacebookPost");
+        qmlRegisterType<FacebookUserInterface>(uri, 1, 0, "FacebookUser");
+
+        qmlRegisterType<FacebookCoverInterface>(uri, 1, 0, "FacebookCover");
+        qmlRegisterType<FacebookLikeInterface>(uri, 1, 0, "FacebookLike");
+        qmlRegisterType<FacebookNameTagInterface>(uri, 1, 0, "FacebookNameTag");
+        qmlRegisterType<FacebookPhotoImageInterface>(uri, 1, 0, "FacebookPhotoImage");
+        qmlRegisterType<FacebookPhotoTagInterface>(uri, 1, 0, "FacebookPhotoTag");
+        qmlRegisterType<FacebookPostActionInterface>(uri, 1, 0, "FacebookPostAction");
+        qmlRegisterType<FacebookPostPropertyInterface>(uri, 1, 0, "FacebookPostProperty");
+        qmlRegisterType<FacebookUserCoverInterface>(uri, 1, 0, "FacebookUserCover");
+        qmlRegisterType<FacebookUserPictureInterface>(uri, 1, 0, "FacebookUserPicture");
+
+        // Socialextra
+        qmlRegisterType<AlphabeticalSorterInterface>(uri, 1, 0, "AlphabeticalSorter");
+        qmlRegisterType<NewsFeedFilterInterface>(uri, 1, 0, "NewsFeedFilter");
+        qmlRegisterType<FacebookExtraPostInterface>(uri, 1, 0, "FacebookExtraPost");
+        qmlRegisterType<TypeSolverInterface>(uri, 1, 0, "TypeSolver");
+        qmlRegisterType<TypeSolverFilterInterface>(uri, 1, 0, "TypeSolverFilter");
+        qmlRegisterType<FilterableFacebookRelatedDataFilterInterface>(uri, 1, 0, "FilterableFacebookRelatedDataFilter");
+        qmlRegisterType<EventFilterInterface>(uri, 1, 0, "EventFilter");
+        qmlRegisterType<FacebookExtraEventInterface>(uri, 1, 0, "FacebookExtraEvent");
+        qmlRegisterType<FacebookExtraInterface>(uri, 1, 0, "FacebookExtra");
+        qmlRegisterType<CommentFilterInterface>(uri, 1, 0, "CommentFilter");
+
+        // Friends
+        qmlRegisterType<TokenManager>(uri, 1, 0, "TokenManager");
+        qmlRegisterSingletonType<DateHelper>(uri, 1, 0, "DateHelper", datehelper_provider);
+        qmlRegisterSingletonType<FooterHelper>(uri, 1, 0, "FooterHelper", footerhelper_provider);
+        qmlRegisterSingletonType<NotificationsHelper>(uri, 1, 0, "NotificationsHelper",
+                                               notificationshelper_provider);
+        qmlRegisterType<PostHelper>(uri, 1, 0, "PostHelper");
+        qmlRegisterType<ImageHelper>(uri, 1, 0, "ImageHelper");
+        qmlRegisterSingletonType<ImageManager>(uri, 1, 0, "ImageManager", imagemanager_provider);
+        qmlRegisterUncreatableType<QQuickImageBase>(uri, 1, 0, "QQuickImageBase", REASON);
+        qmlRegisterType<UserInfoHelper>(uri, 1, 0, "UserInfoHelper");
     }
 };
 
