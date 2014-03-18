@@ -1,3 +1,4 @@
 #!/bin/sh
-rm /usr/lib/qt5/qml/Sailfish/Contacts/ContactCard.qml
-mv /opt/friends-integration/ContactCard.qml.old /usr/lib/qt5/qml/Sailfish/Contacts/ContactCard.qml
+cd /usr/lib/qt5/qml/Sailfish/Contacts/
+patch -p1 < /opt/friends-integration/rmsocial.patch > /dev/null
+exit 0

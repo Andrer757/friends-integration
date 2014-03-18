@@ -20,12 +20,13 @@ License:    LICENSE
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  friends-integration.yaml
-Requires:   harbour-friends
 Requires:   sailfish-components-contacts-qt5 = 0.1.20
-BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Contacts)
+Requires:   harbour-friends
+Requires:   patch
 BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Contacts)
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
 Friends integration plugin allows
@@ -70,7 +71,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration
 /opt/friends-integration/
+%{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration
 # >> files
 # << files
