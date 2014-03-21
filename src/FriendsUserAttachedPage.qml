@@ -96,7 +96,7 @@ Page {
     SilicaListView {
         id: view
         anchors.fill: parent
-        visible: ((model.status == SocialNetwork.Idle) || model.count > 0  && facebook.accessToken != "")
+        visible: ((model.status == SocialNetwork.Idle) || model.count > 0)  && facebook.accessToken != ""
         header: Item {
             width: view.width
             height: childrenRect.height

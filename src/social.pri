@@ -90,6 +90,7 @@ SOURCES += \
     ../social/src/facebook/facebookitemfilterinterface.cpp \
     ../social/src/facebook/facebookrelateddatafilterinterface.cpp
 
+# Friends
 INCLUDEPATH += ../friends/src
 HEADERS += ../friends/src/socialextra/alphabeticalsorterinterface.h \
     ../friends/src/socialextra/newsfeedfilterinterface.h \
@@ -113,6 +114,7 @@ SOURCES += ../friends/src/socialextra/alphabeticalsorterinterface.cpp \
 
 
 HEADERS += ../friends/src/cachehelper_p.h \
+    ../friends/src/clientidplugininterface.h \
     ../friends/src/tokenmanager.h \
     ../friends/src/posthelper.h \
     ../friends/src/footerhelper.h \

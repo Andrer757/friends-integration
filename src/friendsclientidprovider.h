@@ -29,33 +29,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
 
-#include "friendsinvoker.h"
-#include <QtCore/QProcess>
-#include <QtDBus/QDBusInterface>
+#ifndef FRIENDSCLIENTIDPROVIDER_H
+#define FRIENDSCLIENTIDPROVIDER_H
 
-FriendsInvoker::FriendsInvoker(QObject *parent) :
-    QObject(parent)
+#include <QtCore/QObject>
+
+class FriendsClientIdProvider : public QObject
 {
-}
+    Q_OBJECT
+public:
+    explicit FriendsClientIdProvider(QObject *parent = 0);
+    Q_INVOKABLE static QString clientId();
+};
 
-void FriendsInvoker::invokeFriends(const QString &identifier)
-{
-    // Try DBus first
-    QDBusInterface *interface = new QDBusInterface ("harbour.friends", "/", "harbour.friends",
-                                                    QDBusConnection::sessionBus(), this);
-    QDBusMessage message = interface->call("openFacebookEntity", identifier);
-    if (message.type() == QDBusMessage::MethodCallMessage) {
-        interface->deleteLater();
-        return;
-    }
-
-    interface->deleteLater();
-    QStringList arguments;
-    arguments.append("-s");
-    arguments.append("--type=silica-qt5");
-    arguments.append("/usr/bin/harbour-friends");
-    if (!identifier.isEmpty()) {
-        arguments.append(identifier);
-    }
-    QProcess::startDetached("/usr/bin/invoker", arguments);
-}
+#endif // FRIENDSCLIENTIDPROVIDER_H

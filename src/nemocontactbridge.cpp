@@ -72,7 +72,6 @@ void NemoContactBridgeWorkerObject::run()
 {
     QString idStr = QString(ID_KEY).arg(m_contactId);
     QContactId id = QContactId::fromString(idStr);
-    qDebug() << "Using id:" << idStr;
     QContact contact = m_manager->contact(id);
 
     if (contact.isEmpty()) {
@@ -101,7 +100,9 @@ void NemoContactBridgeWorkerObject::run()
     id = QContactId::fromString(QString(ID_KEY).arg(facebookKeys.first()));
     QContact fbContact = m_manager->contact(id);
 
-    emit done(fbContact.detail<QContactGuid>().guid());
+    QString guid = fbContact.detail<QContactGuid>().guid();
+    qDebug() << "Friend GUID:" << guid;
+    emit done(guid);
 }
 
 

@@ -29,33 +29,29 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
 
-#include "friendsinvoker.h"
-#include <QtCore/QProcess>
-#include <QtDBus/QDBusInterface>
+#include "friendsclientidprovider.h"
+#include <QtCore/QPluginLoader>
+#include <QtCore/QDebug>
+#include "clientidplugininterface.h"
 
-FriendsInvoker::FriendsInvoker(QObject *parent) :
+static const char *CLIENT_ID_PLUGIN = "/usr/share/harbour-friends/lib/libharbour-friends-clientidplugin.so";
+
+FriendsClientIdProvider::FriendsClientIdProvider(QObject *parent) :
     QObject(parent)
 {
 }
 
-void FriendsInvoker::invokeFriends(const QString &identifier)
+QString FriendsClientIdProvider::clientId()
 {
-    // Try DBus first
-    QDBusInterface *interface = new QDBusInterface ("harbour.friends", "/", "harbour.friends",
-                                                    QDBusConnection::sessionBus(), this);
-    QDBusMessage message = interface->call("openFacebookEntity", identifier);
-    if (message.type() == QDBusMessage::MethodCallMessage) {
-        interface->deleteLater();
-        return;
+    QPluginLoader pluginLoader (CLIENT_ID_PLUGIN);
+    if (pluginLoader.load()) {
+        QObject *plugin = pluginLoader.instance();
+        ClientIdPluginInterface *castedPlugin = qobject_cast<ClientIdPluginInterface *>(plugin);
+        if (castedPlugin) {
+            qDebug() << "Client id loaded";
+            return castedPlugin->clientId();
+        }
     }
 
-    interface->deleteLater();
-    QStringList arguments;
-    arguments.append("-s");
-    arguments.append("--type=silica-qt5");
-    arguments.append("/usr/bin/harbour-friends");
-    if (!identifier.isEmpty()) {
-        arguments.append(identifier);
-    }
-    QProcess::startDetached("/usr/bin/invoker", arguments);
+    return QString();
 }

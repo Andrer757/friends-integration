@@ -3,8 +3,8 @@ Summary: Friends integration plugin
 Version: 0.1
 Release: 1
 Group: Qt/Qt
-URL: http://example.org/
-License: LICENSE
+URL: https://github.com/SfietKonstantin/friends-integration
+License: TODO
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-
@@ -14,15 +14,16 @@ Description: |-
 Configure: none
 Builder: qtc5
 PkgConfigBR:
-- Qt5Qml
-- Qt5Contacts
-- Qt5Core
+- Qt5DBus
 - Qt5Quick
+- Qt5Core
+- Qt5Contacts
+- Qt5Qml
 Requires:
-- sailfish-components-contacts-qt5 = 0.1.20
-- harbour-friends
 - patch
+- harbour-friends
+- sailfish-components-contacts-qt5 = 0.1.20
 Files:
-- /opt/friends-integration/
 - '%{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration'
+- /opt/friends-integration/
 PkgBR: []

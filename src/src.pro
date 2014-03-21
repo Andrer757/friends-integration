@@ -7,16 +7,18 @@ CONFIG += qt plugin hide_symbols
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 INSTALLS += target
 
-QT += contacts qml network quick quick-private
+QT += contacts qml network quick quick-private dbus
 
 HEADERS += \
     $$PWD/nemocontactbridge.h \
-    friendsinvoker.h
+    friendsinvoker.h \
+    friendsclientidprovider.h
 
 SOURCES += \
     $$PWD/plugin.cpp \
     $$PWD/nemocontactbridge.cpp \
-    friendsinvoker.cpp
+    friendsinvoker.cpp \
+    friendsclientidprovider.cpp
 
 OTHER_FILES += qmldir \
     FriendsUserAttachedPage.qml \
