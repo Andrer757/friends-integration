@@ -19,8 +19,13 @@ PkgConfigBR:
 - Qt5Qml
 - Qt5Quick
 - Qt5Contacts
+- buteosyncfw5
+- nemonotifications-qt5
 Requires:
 - harbour-friends
 Files:
+- '%{_datadir}/dbus-1/'
+- '%{_libdir}/buteo-plugins-qt5'
+- '%{_sysconfdir}/buteo/profiles'
 - '%{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration'
 PkgBR: []

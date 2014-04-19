@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = plugin #accounts
+SUBDIRS = plugin daemon dbus#accounts

@@ -26,6 +26,8 @@ BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Contacts)
+BuildRequires:  pkgconfig(buteosyncfw5)
+BuildRequires:  pkgconfig(nemonotifications-qt5)
 
 %description
 Friends integration plugin allows
@@ -58,9 +60,23 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
+%post
+# >> post
+dbus-send --system --type=method_call \
+--dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig
+# << post
+
+%postun
+# >> postun
+dbus-send --system --type=method_call \
+--dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig
+# << postun
+
 %files
 %defattr(-,root,root,-)
+%{_datadir}/dbus-1/
+%{_libdir}/buteo-plugins-qt5
+%{_sysconfdir}/buteo/profiles
 %{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration
-%{_datadir}/accounts/
 # >> files
 # << files

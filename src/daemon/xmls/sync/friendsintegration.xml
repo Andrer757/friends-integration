@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile name="friendsintegration" type="sync" >
+    <key name="displayname" value="Friends sync"/>
+    <key name="destinationtype" value="online"/>
+    <key name="enabled" value="true" />
+    <key name="use_accounts" value="false" />
+    <key name="hidden" value="false" />
+    <profile name="friendsintegration" type="client" />
+
+    <schedule enabled="true" interval="30" days="1,2,3,4,5,6,7" syncconfiguredtime="" time="">
+    </schedule>
+</profile>

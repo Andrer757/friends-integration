@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=harbour.friends
+Exec=/usr/bin/invoker -s -t=silica-qt5 /usr/bin/harbour-friends
