@@ -33,8 +33,7 @@
 #include <QtQml>
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
-#include "nemocontactbridge.h"
-#include "friendsinvoker.h"
+#include "friendsclientidprovider.h"
 
 // social plugin headers
 #include "socialnetworkinterface.h"
@@ -151,8 +150,7 @@ public:
     {
 
         Q_ASSERT(uri == QLatin1String("org.SfietKonstantin.friends.integration"));
-        qmlRegisterType<NemoContactBridge>(uri, 1, 0, "NemoContactBridge");
-        qmlRegisterType<FriendsInvoker>(uri, 1, 0, "FriendsInvoker");
+        qmlRegisterType<FriendsClientIdProvider>(uri, 1, 0, "FriendsClientIdProvider");
 
         // Social
         qmlRegisterUncreatableType<SocialNetworkInterface>(uri, 1, 0, "SocialNetwork", REASON);

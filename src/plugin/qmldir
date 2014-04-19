@@ -1,3 +1,2 @@
 module org.SfietKonstantin.friends.integration
 plugin friends-integration
-FriendsUserAttachedPage 1.0 FriendsUserAttachedPage.qml

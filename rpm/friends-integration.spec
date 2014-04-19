@@ -20,14 +20,12 @@ License:    TODO
 URL:        https://github.com/SfietKonstantin/friends-integration
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  friends-integration.yaml
-Requires:   patch
 Requires:   harbour-friends
-Requires:   sailfish-components-contacts-qt5 = 0.1.20
-BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Contacts)
+BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Contacts)
 
 %description
 Friends integration plugin allows
@@ -60,19 +58,9 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
-%preun
-# >> preun
-/opt/friends-integration/preun.sh
-# << preun
-
-%post
-# >> post
-/opt/friends-integration/post.sh
-# << post
-
 %files
 %defattr(-,root,root,-)
 %{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration
-/opt/friends-integration/
+%{_datadir}/accounts/
 # >> files
 # << files

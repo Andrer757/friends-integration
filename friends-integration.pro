@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
-SUBDIRS = src tools
+SUBDIRS = src
 
 OTHER_FILES += \
     rpm/friends-integration.yaml \
