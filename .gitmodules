@@ -4,3 +4,6 @@
 [submodule "social"]
 	path = social
 	url = https://github.com/SfietKonstantin/nemo-qml-plugin-social.git
+[submodule "libsocialcache"]
+	path = libsocialcache
+	url = https://github.com/SfietKonstantin/libsocialcache.git

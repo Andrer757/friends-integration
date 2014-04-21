@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<provider id="friends">
-    <name>Friends</name>
-    <icon>image://theme/graphic-service-facebook</icon>
-    <!--<domains>.*facebook\.com</domains>
+<service id="friends-microblog">
+    <type>microblogging</type>
+    <name>Facebook Status via Friends</name>
+    <icon>image://theme/icon-m-edit</icon>
+    <provider>friends</provider>
 
     <template>
         <group name="auth">
@@ -13,9 +14,9 @@
                     <setting name="Host">www.facebook.com</setting>
                     <setting name="AuthPath">/dialog/oauth</setting>
                     <setting name="RedirectUri">https://www.facebook.com/connect/login_success.html</setting>
-                    <setting name="Scope" type="as">["publish_stream","read_stream","status_update","user_photos","friends_photos","xmpp_login","manage_notifications"]</setting>
+                    <setting name="Scope" type="as">["publish_stream","read_stream","status_update","user_photos","friends_photos"]</setting>
                 </group>
             </group>
         </group>
-    </template>-->
-</provider>
+    </template>
+</service>

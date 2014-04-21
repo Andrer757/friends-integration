@@ -1,2 +1,4 @@
 build
 *.pro.user*
+src/accounts/translations/*.ts
+.tx/friends-integration*

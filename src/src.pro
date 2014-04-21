@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = plugin daemon dbus#accounts
+SUBDIRS = plugin daemon dbus accounts eventsview

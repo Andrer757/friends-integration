@@ -21,4 +21,4 @@ qmlFiles.files += $$OTHER_FILES
 qmlFiles.path +=  $$target.path
 INSTALLS += qmlFiles
 
-include(social.pri)
+include(../social.pri)
