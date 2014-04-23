@@ -23,11 +23,13 @@ Source100:  friends-integration.yaml
 Requires:   harbour-friends
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5DBus)
+BuildRequires:  pkgconfig(Qt5Sql)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Contacts)
 BuildRequires:  pkgconfig(buteosyncfw5)
 BuildRequires:  pkgconfig(nemonotifications-qt5)
+BuildRequires:  pkgconfig(accounts-qt5)
 
 %description
 Friends integration plugin allows
@@ -75,6 +77,7 @@ dbus-send --system --type=method_call \
 %files
 %defattr(-,root,root,-)
 %{_datadir}/dbus-1/
+%{_datadir}/accounts/
 %{_libdir}/buteo-plugins-qt5
 %{_sysconfdir}/buteo/profiles
 %{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration

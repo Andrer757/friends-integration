@@ -1,138 +1,138 @@
 equals(QT_MAJOR_VERSION, 5): DEFINES += QT_VERSION_5
 
-system(sed -i \'s/import harbour.friends 1.0/import org.SfietKonstantin.friends.integration 1.0/g\' ../friends/src/qml/*.qml)
-system(sed -i \'s/import harbour.friends.social 1.0/import org.SfietKonstantin.friends.integration 1.0/g\' ../friends/src/qml/*.qml)
-system(sed -i \'s/import harbour.friends.social.extra 1.0/import org.SfietKonstantin.friends.integration 1.0/g\' ../friends/src/qml/*.qml)
+system(sed -i \'s/import harbour.friends 1.0/import org.SfietKonstantin.friends.integration 1.0/g\' $$PWD/../friends/src/qml/*.qml)
+system(sed -i \'s/import harbour.friends.social 1.0/import org.SfietKonstantin.friends.integration 1.0/g\' $$PWD/../friends/src/qml/*.qml)
+system(sed -i \'s/import harbour.friends.social.extra 1.0/import org.SfietKonstantin.friends.integration 1.0/g\' $$PWD/../friends/src/qml/*.qml)
 
-INCLUDEPATH += ../social/src/
+INCLUDEPATH += $$PWD/../social/src/
 
 HEADERS += \
-    ../social/src/contentiteminterface.h \
-    ../social/src/contentiteminterface_p.h \
-    ../social/src/filterinterface.h \
-    ../social/src/filterinterface_p.h \
-    ../social/src/sorterinterface.h \
-    ../social/src/identifiablecontentiteminterface.h \
-    ../social/src/identifiablecontentiteminterface_p.h \
-    ../social/src/socialnetworkinterface.h \
-    ../social/src/socialnetworkinterface_p.h \
-    ../social/src/socialnetworkmodelinterface.h \
-    ../social/src/socialnetworkmodelinterface_p.h
+    $$PWD/../social/src/contentiteminterface.h \
+    $$PWD/../social/src/contentiteminterface_p.h \
+    $$PWD/../social/src/filterinterface.h \
+    $$PWD/../social/src/filterinterface_p.h \
+    $$PWD/../social/src/sorterinterface.h \
+    $$PWD/../social/src/identifiablecontentiteminterface.h \
+    $$PWD/../social/src/identifiablecontentiteminterface_p.h \
+    $$PWD/../social/src/socialnetworkinterface.h \
+    $$PWD/../social/src/socialnetworkinterface_p.h \
+    $$PWD/../social/src/socialnetworkmodelinterface.h \
+    $$PWD/../social/src/socialnetworkmodelinterface_p.h
 
 SOURCES += \
-    ../social/src/contentiteminterface.cpp \
-    ../social/src/filterinterface.cpp \
-    ../social/src/sorterinterface.cpp \
-    ../social/src/identifiablecontentiteminterface.cpp \
-    ../social/src/socialnetworkinterface.cpp \
-    ../social/src/socialnetworkmodelinterface.cpp
+    $$PWD/../social/src/contentiteminterface.cpp \
+    $$PWD/../social/src/filterinterface.cpp \
+    $$PWD/../social/src/sorterinterface.cpp \
+    $$PWD/../social/src/identifiablecontentiteminterface.cpp \
+    $$PWD/../social/src/socialnetworkinterface.cpp \
+    $$PWD/../social/src/socialnetworkmodelinterface.cpp
 
 # Facebook
 HEADERS += \
-    ../social/src/facebook/facebookontology_p.h \
-    ../social/src/facebook/facebookinterface.h \
-    ../social/src/facebook/facebookinterface_p.h \
-    ../social/src/facebook/facebookobjectreferenceinterface.h \
-    ../social/src/facebook/facebookobjectreferenceinterface_p.h \
-    ../social/src/facebook/facebookalbuminterface.h \
-    ../social/src/facebook/facebookalbuminterface_p.h \
-    ../social/src/facebook/facebookcommentinterface.h \
-    ../social/src/facebook/facebookcommentinterface_p.h \
-    ../social/src/facebook/facebookeventinterface.h \
-    ../social/src/facebook/facebookeventinterface_p.h \
-    ../social/src/facebook/facebookgroupinterface.h \
-    ../social/src/facebook/facebookgroupinterface_p.h \
-    ../social/src/facebook/facebooknotificationinterface.h \
-    ../social/src/facebook/facebooknotificationinterface_p.h \
-    ../social/src/facebook/facebookpageinterface.h \
-    ../social/src/facebook/facebookpageinterface_p.h \
-    ../social/src/facebook/facebookphotointerface.h \
-    ../social/src/facebook/facebookphotointerface_p.h \
-    ../social/src/facebook/facebookpostinterface.h \
-    ../social/src/facebook/facebookpostinterface_p.h \
-    ../social/src/facebook/facebookthreadinterface.h \
-    ../social/src/facebook/facebookthreadinterface_p.h \
-    ../social/src/facebook/facebookuserinterface.h \
-    ../social/src/facebook/facebookuserinterface_p.h \
-    ../social/src/facebook/facebookcoverinterface.h \
-    ../social/src/facebook/facebooklikeinterface.h \
-    ../social/src/facebook/facebooknametaginterface.h \
-    ../social/src/facebook/facebookphotoimageinterface.h \
-    ../social/src/facebook/facebookphototaginterface.h \
-    ../social/src/facebook/facebookpostactioninterface.h \
-    ../social/src/facebook/facebookpostpropertyinterface.h \
-    ../social/src/facebook/facebookusercoverinterface.h \
-    ../social/src/facebook/facebookuserpictureinterface.h \
-    ../social/src/facebook/facebookitemfilterinterface.h \
-    ../social/src/facebook/facebookrelateddatafilterinterface.h
+    $$PWD/../social/src/facebook/facebookontology_p.h \
+    $$PWD/../social/src/facebook/facebookinterface.h \
+    $$PWD/../social/src/facebook/facebookinterface_p.h \
+    $$PWD/../social/src/facebook/facebookobjectreferenceinterface.h \
+    $$PWD/../social/src/facebook/facebookobjectreferenceinterface_p.h \
+    $$PWD/../social/src/facebook/facebookalbuminterface.h \
+    $$PWD/../social/src/facebook/facebookalbuminterface_p.h \
+    $$PWD/../social/src/facebook/facebookcommentinterface.h \
+    $$PWD/../social/src/facebook/facebookcommentinterface_p.h \
+    $$PWD/../social/src/facebook/facebookeventinterface.h \
+    $$PWD/../social/src/facebook/facebookeventinterface_p.h \
+    $$PWD/../social/src/facebook/facebookgroupinterface.h \
+    $$PWD/../social/src/facebook/facebookgroupinterface_p.h \
+    $$PWD/../social/src/facebook/facebooknotificationinterface.h \
+    $$PWD/../social/src/facebook/facebooknotificationinterface_p.h \
+    $$PWD/../social/src/facebook/facebookpageinterface.h \
+    $$PWD/../social/src/facebook/facebookpageinterface_p.h \
+    $$PWD/../social/src/facebook/facebookphotointerface.h \
+    $$PWD/../social/src/facebook/facebookphotointerface_p.h \
+    $$PWD/../social/src/facebook/facebookpostinterface.h \
+    $$PWD/../social/src/facebook/facebookpostinterface_p.h \
+    $$PWD/../social/src/facebook/facebookthreadinterface.h \
+    $$PWD/../social/src/facebook/facebookthreadinterface_p.h \
+    $$PWD/../social/src/facebook/facebookuserinterface.h \
+    $$PWD/../social/src/facebook/facebookuserinterface_p.h \
+    $$PWD/../social/src/facebook/facebookcoverinterface.h \
+    $$PWD/../social/src/facebook/facebooklikeinterface.h \
+    $$PWD/../social/src/facebook/facebooknametaginterface.h \
+    $$PWD/../social/src/facebook/facebookphotoimageinterface.h \
+    $$PWD/../social/src/facebook/facebookphototaginterface.h \
+    $$PWD/../social/src/facebook/facebookpostactioninterface.h \
+    $$PWD/../social/src/facebook/facebookpostpropertyinterface.h \
+    $$PWD/../social/src/facebook/facebookusercoverinterface.h \
+    $$PWD/../social/src/facebook/facebookuserpictureinterface.h \
+    $$PWD/../social/src/facebook/facebookitemfilterinterface.h \
+    $$PWD/../social/src/facebook/facebookrelateddatafilterinterface.h
 
 SOURCES += \
-    ../social/src/facebook/facebookinterface.cpp \
-    ../social/src/facebook/facebookobjectreferenceinterface.cpp \
-    ../social/src/facebook/facebookalbuminterface.cpp \
-    ../social/src/facebook/facebookcommentinterface.cpp \
-    ../social/src/facebook/facebookeventinterface.cpp \
-    ../social/src/facebook/facebookgroupinterface.cpp \
-    ../social/src/facebook/facebooknotificationinterface.cpp \
-    ../social/src/facebook/facebookpageinterface.cpp \
-    ../social/src/facebook/facebookphotointerface.cpp \
-    ../social/src/facebook/facebookpostinterface.cpp \
-    ../social/src/facebook/facebookthreadinterface.cpp \
-    ../social/src/facebook/facebookuserinterface.cpp \
-    ../social/src/facebook/facebookcoverinterface.cpp \
-    ../social/src/facebook/facebooklikeinterface.cpp \
-    ../social/src/facebook/facebooknametaginterface.cpp \
-    ../social/src/facebook/facebookphotoimageinterface.cpp \
-    ../social/src/facebook/facebookphototaginterface.cpp \
-    ../social/src/facebook/facebookpostactioninterface.cpp \
-    ../social/src/facebook/facebookpostpropertyinterface.cpp \
-    ../social/src/facebook/facebookusercoverinterface.cpp \
-    ../social/src/facebook/facebookuserpictureinterface.cpp \
-    ../social/src/facebook/facebookitemfilterinterface.cpp \
-    ../social/src/facebook/facebookrelateddatafilterinterface.cpp
+    $$PWD/../social/src/facebook/facebookinterface.cpp \
+    $$PWD/../social/src/facebook/facebookobjectreferenceinterface.cpp \
+    $$PWD/../social/src/facebook/facebookalbuminterface.cpp \
+    $$PWD/../social/src/facebook/facebookcommentinterface.cpp \
+    $$PWD/../social/src/facebook/facebookeventinterface.cpp \
+    $$PWD/../social/src/facebook/facebookgroupinterface.cpp \
+    $$PWD/../social/src/facebook/facebooknotificationinterface.cpp \
+    $$PWD/../social/src/facebook/facebookpageinterface.cpp \
+    $$PWD/../social/src/facebook/facebookphotointerface.cpp \
+    $$PWD/../social/src/facebook/facebookpostinterface.cpp \
+    $$PWD/../social/src/facebook/facebookthreadinterface.cpp \
+    $$PWD/../social/src/facebook/facebookuserinterface.cpp \
+    $$PWD/../social/src/facebook/facebookcoverinterface.cpp \
+    $$PWD/../social/src/facebook/facebooklikeinterface.cpp \
+    $$PWD/../social/src/facebook/facebooknametaginterface.cpp \
+    $$PWD/../social/src/facebook/facebookphotoimageinterface.cpp \
+    $$PWD/../social/src/facebook/facebookphototaginterface.cpp \
+    $$PWD/../social/src/facebook/facebookpostactioninterface.cpp \
+    $$PWD/../social/src/facebook/facebookpostpropertyinterface.cpp \
+    $$PWD/../social/src/facebook/facebookusercoverinterface.cpp \
+    $$PWD/../social/src/facebook/facebookuserpictureinterface.cpp \
+    $$PWD/../social/src/facebook/facebookitemfilterinterface.cpp \
+    $$PWD/../social/src/facebook/facebookrelateddatafilterinterface.cpp
 
 # Friends
-INCLUDEPATH += ../friends/src
-HEADERS += ../friends/src/socialextra/alphabeticalsorterinterface.h \
-    ../friends/src/socialextra/newsfeedfilterinterface.h \
-    ../friends/src/socialextra/facebookextrapostinterface.h \
-    ../friends/src/socialextra/typesolverinterface.h \
-    ../friends/src/socialextra/filterablefacebookrelateddatafilterinterface.h \
-    ../friends/src/socialextra/eventfilterinterface.h \
-    ../friends/src/socialextra/facebookextraeventinterface.h \
-    ../friends/src/socialextra/facebookextrainterface.h \
-    ../friends/src/socialextra/commentfilterinterface.h
+INCLUDEPATH += $$PWD/../friends/src
+HEADERS += $$PWD/../friends/src/socialextra/alphabeticalsorterinterface.h \
+    $$PWD/../friends/src/socialextra/newsfeedfilterinterface.h \
+    $$PWD/../friends/src/socialextra/facebookextrapostinterface.h \
+    $$PWD/../friends/src/socialextra/typesolverinterface.h \
+    $$PWD/../friends/src/socialextra/filterablefacebookrelateddatafilterinterface.h \
+    $$PWD/../friends/src/socialextra/eventfilterinterface.h \
+    $$PWD/../friends/src/socialextra/facebookextraeventinterface.h \
+    $$PWD/../friends/src/socialextra/facebookextrainterface.h \
+    $$PWD/../friends/src/socialextra/commentfilterinterface.h
 
-SOURCES += ../friends/src/socialextra/alphabeticalsorterinterface.cpp \
-    ../friends/src/socialextra/newsfeedfilterinterface.cpp \
-    ../friends/src/socialextra/facebookextrapostinterface.cpp \
-    ../friends/src/socialextra/typesolverinterface.cpp \
-    ../friends/src/socialextra/filterablefacebookrelateddatafilterinterface.cpp \
-    ../friends/src/socialextra/eventfilterinterface.cpp \
-    ../friends/src/socialextra/facebookextraeventinterface.cpp \
-    ../friends/src/socialextra/facebookextrainterface.cpp \
-    ../friends/src/socialextra/commentfilterinterface.cpp
+SOURCES += $$PWD/../friends/src/socialextra/alphabeticalsorterinterface.cpp \
+    $$PWD/../friends/src/socialextra/newsfeedfilterinterface.cpp \
+    $$PWD/../friends/src/socialextra/facebookextrapostinterface.cpp \
+    $$PWD/../friends/src/socialextra/typesolverinterface.cpp \
+    $$PWD/../friends/src/socialextra/filterablefacebookrelateddatafilterinterface.cpp \
+    $$PWD/../friends/src/socialextra/eventfilterinterface.cpp \
+    $$PWD/../friends/src/socialextra/facebookextraeventinterface.cpp \
+    $$PWD/../friends/src/socialextra/facebookextrainterface.cpp \
+    $$PWD/../friends/src/socialextra/commentfilterinterface.cpp
 
 
-HEADERS += ../friends/src/cachehelper_p.h \
-    ../friends/src/clientidplugininterface.h \
-    ../friends/src/tokenmanager.h \
-    ../friends/src/posthelper.h \
-    ../friends/src/footerhelper.h \
-    ../friends/src/notificationshelper.h \
-    ../friends/src/imagehelper.h \
-    ../friends/src/imagemanager.h \
-    ../friends/src/objecthelper_p.h \
-    ../friends/src/abstractdisplayhelper.h \
-    ../friends/src/userinfohelper.h \
-    ../friends/src/datehelper.h \
-    ../friends/src/defines_p.h
-SOURCES += ../friends/src/tokenmanager.cpp \
-    ../friends/src/posthelper.cpp \
-    ../friends/src/footerhelper.cpp \
-    ../friends/src/notificationshelper.cpp \
-    ../friends/src/imagehelper.cpp \
-    ../friends/src/imagemanager.cpp \
-    ../friends/src/abstractdisplayhelper.cpp \
-    ../friends/src/userinfohelper.cpp \
-    ../friends/src/datehelper.cpp
+HEADERS += $$PWD/../friends/src/cachehelper_p.h \
+    $$PWD/../friends/src/clientidplugininterface.h \
+    $$PWD/../friends/src/tokenmanager.h \
+    $$PWD/../friends/src/posthelper.h \
+    $$PWD/../friends/src/footerhelper.h \
+    $$PWD/../friends/src/notificationshelper.h \
+    $$PWD/../friends/src/imagehelper.h \
+    $$PWD/../friends/src/imagemanager.h \
+    $$PWD/../friends/src/objecthelper_p.h \
+    $$PWD/../friends/src/abstractdisplayhelper.h \
+    $$PWD/../friends/src/userinfohelper.h \
+    $$PWD/../friends/src/datehelper.h \
+    $$PWD/../friends/src/defines_p.h
+SOURCES += $$PWD/../friends/src/tokenmanager.cpp \
+    $$PWD/../friends/src/posthelper.cpp \
+    $$PWD/../friends/src/footerhelper.cpp \
+    $$PWD/../friends/src/notificationshelper.cpp \
+    $$PWD/../friends/src/imagehelper.cpp \
+    $$PWD/../friends/src/imagemanager.cpp \
+    $$PWD/../friends/src/abstractdisplayhelper.cpp \
+    $$PWD/../friends/src/userinfohelper.cpp \
+    $$PWD/../friends/src/datehelper.cpp

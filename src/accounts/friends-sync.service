@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<service id="friends-sync">
+    <type>sync</type>
+    <name>Facebook Sync via Friends</name>
+    <icon>image://theme/icon-m-sync</icon>
+    <provider>friends</provider>
+
+    <!--<template>
+        <group name="auth">
+            <setting name="method">oauth2</setting>
+            <setting name="mechanism">user_agent</setting>
+            <group name="oauth2">
+                <group name="user_agent">
+                    <setting name="Host">www.facebook.com</setting>
+                    <setting name="AuthPath">/dialog/oauth</setting>
+                    <setting name="RedirectUri">https://www.facebook.com/connect/login_success.html</setting>
+                    <setting name="Scope" type="as">["email", "user_events", "publish_actions", "user_birthday", "user_interests", "user_status", "user_website", "user_about_me", "user_photos", "friends_about_me", "friends_events", "friends_birthday", "friends_photos", "friends_status", "friends_website", "manage_notifications", "photo_upload", "share_item", "user_online_presence", "friends_online_presence", "publish_stream", "publish_checkins", "read_mailbox", "read_stream", "video_upload", "status_update", "xmpp_login"]</setting>
+                </group>
+            </group>
+        </group>
+    </template>-->
+</service>
+

@@ -5,7 +5,7 @@
     <icon>image://theme/icon-m-edit</icon>
     <provider>friends</provider>
 
-    <template>
+    <!--<template>
         <group name="auth">
             <setting name="method">oauth2</setting>
             <setting name="mechanism">user_agent</setting>
@@ -18,5 +18,5 @@
                 </group>
             </group>
         </group>
-    </template>
+    </template>-->
 </service>

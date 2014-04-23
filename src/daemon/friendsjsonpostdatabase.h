@@ -29,54 +29,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
 
-#ifndef FRIENDSINTEGRATIONCLIENT_H
-#define FRIENDSINTEGRATIONCLIENT_H
+#ifndef FRIENDSJSONPOSTDATABASE_H
+#define FRIENDSJSONPOSTDATABASE_H
 
-#include <ClientPlugin.h>
-#include <SyncResults.h>
-#include <Accounts/Manager>
+#include <QtCore/QDateTime>
+#include <QtCore/QJsonDocument>
+#include "abstractsocialcachedatabase.h"
 
-class QNetworkAccessManager;
-class QNetworkReply;
-class FriendsJsonPostDatabase;
-class FriendsIntegrationClient : public Buteo::ClientPlugin
+class FriendsJsonPostDatabasePrivate;
+class FriendsJsonPostDatabase: public AbstractSocialCacheDatabase
 {
     Q_OBJECT
-
 public:
-    explicit FriendsIntegrationClient(const QString& pluginName, const Buteo::SyncProfile& profile,
-                                      Buteo::PluginCbInterface *cbInterface);
-    ~FriendsIntegrationClient();
-    bool init();
-    bool uninit();
-    bool startSync();
-    void abortSync(Sync::SyncStatus status = Sync::SYNC_ABORTED);
-    Buteo::SyncResults getSyncResults() const;
-    bool cleanUp();
-public slots:
-    void connectivityStateChanged(Sync::ConnectivityType type, bool state);
+    explicit FriendsJsonPostDatabase();
+    ~FriendsJsonPostDatabase();
+
+    QList<QJsonDocument> posts() const;
+    void addPost(const QString &identifier, const QJsonDocument &post, const QDateTime &timestamp);
+    void removePosts();
+
+    void commit();
+    void refresh();
+
+Q_SIGNALS:
+    void postsChanged();
+protected:
+    bool read();
+    bool write();
+    bool createTables(QSqlDatabase database) const;
+    bool dropTables(QSqlDatabase database) const;
+
+    void readFinished();
+
+
 private:
-    void syncNotifications();
-    void syncFeed();
-    void finish();
-    void startTask();
-    void finishTask();
-    int m_tasks;
-    Accounts::Manager *m_manager;
-    Buteo::SyncResults m_results;
-    QString m_token;
-    QNetworkAccessManager *m_network;
-    QNetworkReply *m_notificationsReply;
-    QNetworkReply *m_postsReply;
-    FriendsJsonPostDatabase *m_db;
-private slots:
-    void slotNotificationsFinished();
-    void slotFeedFinished();
+    Q_DECLARE_PRIVATE(FriendsJsonPostDatabase)
 };
 
-extern "C" FriendsIntegrationClient* createPlugin(const QString& pluginName,
-                                                  const Buteo::SyncProfile& profile,
-                                                  Buteo::PluginCbInterface *cbInterface);
-extern "C" void destroyPlugin(FriendsIntegrationClient *client);
-
-#endif // FRIENDSINTEGRATIONCLIENT_H
+#endif // FRIENDSJSONPOSTDATABASE_H

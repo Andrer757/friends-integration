@@ -2,15 +2,18 @@ TEMPLATE = lib
 TARGET = friendsintegration-client
 
 CONFIG += link_pkgconfig plugin
-PKGCONFIG += buteosyncfw5 nemonotifications-qt5
+PKGCONFIG += buteosyncfw5 nemonotifications-qt5 accounts-qt5
 
-INCLUDEPATH += /home/sk/Code/SDK/SailfishOS/mersdk/targets/SailfishOS-armv7hl/usr/include/buteosyncfw5/
+INCLUDEPATH += /home/sk/Code/SDK/SailfishOS/mersdk/targets/SailfishOS-armv7hl/usr/include/buteosyncfw5/ \
+    /home/sk/Code/SDK/SailfishOS/mersdk/targets/SailfishOS-armv7hl/usr/include/accounts-qt5
 
-QT = core dbus network
+QT = core dbus network sql
 
-HEADERS += friendsintegrationclient.h
+HEADERS += friendsintegrationclient.h \
+    friendsjsonpostdatabase.h
 
-SOURCES += friendsintegrationclient.cpp
+SOURCES += friendsintegrationclient.cpp \
+    friendsjsonpostdatabase.cpp
 
 OTHER_FILES += xmls/sync/friendsintegration.xml \
     xmls/client/friendsintegration.xml
@@ -24,4 +27,6 @@ client.path = /etc/buteo/profiles/client
 client.files = xmls/client/friendsintegration.xml
 
 INSTALLS += target sync client
+
+include(../socialcache.pri)
 

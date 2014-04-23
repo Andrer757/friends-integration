@@ -1,14 +1,16 @@
-HEADERS += \
-    ../libsocialcache/src/lib/semaphore_p.h \
-    ../libsocialcache/src/lib/socialsyncinterface.h \
-    ../libsocialcache/src/lib/abstractsocialcachedatabase.h \
-    ../libsocialcache/src/lib/abstractsocialcachedatabase_p.h \
-    ../libsocialcache/src/lib/abstractsocialpostcachedatabase.h \
-    ../libsocialcache/src/lib/facebookpostsdatabase.h
+DEFINES += 'PRIVILEGED_DATA_DIR=\'QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + \"/system/privileged/\"\''
 
-SOURCES = \
-    ../libsocialcache/src/lib/semaphore_p.cpp \
-    ../libsocialcache/src/lib/socialsyncinterface.cpp \
-    ../libsocialcache/src/lib/abstractsocialcachedatabase.cpp \
-    ../libsocialcache/src/lib/abstractsocialpostcachedatabase.cpp \
-    ../libsocialcache/src/lib/facebookpostsdatabase.cpp
+INCLUDEPATH += $$PWD/../libsocialcache/src/lib/
+
+HEADERS += \
+    $$PWD/../libsocialcache/src/lib/semaphore_p.h \
+    $$PWD/../libsocialcache/src/lib/socialsyncinterface.h \
+    $$PWD/../libsocialcache/src/lib/abstractsocialcachedatabase.h \
+    $$PWD/../libsocialcache/src/lib/abstractsocialcachedatabase_p.h \
+    $$PWD/../libsocialcache/src/lib/abstractsocialpostcachedatabase.h
+
+SOURCES += \
+    $$PWD/../libsocialcache/src/lib/semaphore_p.cpp \
+    $$PWD/../libsocialcache/src/lib/socialsyncinterface.cpp \
+    $$PWD/../libsocialcache/src/lib/abstractsocialcachedatabase.cpp \
+    $$PWD/../libsocialcache/src/lib/abstractsocialpostcachedatabase.cpp
