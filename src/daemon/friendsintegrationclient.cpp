@@ -46,6 +46,7 @@
 #include "../../friends/src/defines_p.h"
 #include "../../social/src/facebook/facebookontology_p.h"
 #include "friendsjsonpostdatabase.h"
+#include "constants_p.h"
 
 static const char *FRIENDS_PROVIDER = "friends";
 static const char *FRIENDS_SYNC_SERVICE = "friends-sync";
@@ -76,9 +77,6 @@ static const char *QUERY_UID_KEY = "uid";
 static const char *QUERY_PAGEID_KEY = "page_id";
 static const char *QUERY_GID_KEY = "gid";
 static const char *QUERY_EID_KEY = "eid";
-
-static const char *FIRST_TIMESTAMP_KEY = "first_timestamp";
-static const char *LAST_TIMESTAMP_KEY = "last_timestamp";
 
 static const char *WALL_WHERE = "WHERE filter_key in "
                                 "    (SELECT filter_key FROM stream_filter "
@@ -147,10 +145,14 @@ bool FriendsIntegrationClient::startSync()
         }
     }
 
-    qDebug() << "Start sync: account" << account->id();
+    if (enabled) {
+        qDebug() << "Start sync: account" << account->id();
 
-    syncNotifications();
-    syncFeed();
+        syncNotifications();
+        syncFeed();
+    } else {
+        emit success(getProfileName(), "Sync finished");
+    }
     return true;
 }
 
@@ -365,7 +367,7 @@ void FriendsIntegrationClient::slotFeedFinished()
             QJsonArray nameList = entryObject.value(QUERY_RESULT_KEY).toArray();
             foreach (const QJsonValue &name, nameList) {
                 QJsonObject nameObject = name.toObject();
-                names.insert(nameObject.value(key).toString(),
+                names.insert(nameObject.value(key).toVariant().toString(),
                              nameObject.value(QUERY_NAME_KEY).toString());
             }
         }
@@ -376,7 +378,7 @@ void FriendsIntegrationClient::slotFeedFinished()
     QList<QJsonObject> postObjects;
     foreach (QJsonValue entry, mainData) {
         QJsonObject post = entry.toObject();
-        QString postId = post.value("post_id").toString();
+        QString postId = post.value("post_id").toVariant().toString();
         if (!postObjectIds.contains(postId)) {
             postObjectIds.insert(postId);
             postObjects.append(post);
@@ -471,11 +473,11 @@ void FriendsIntegrationClient::slotFeedFinished()
         postData.insert(FACEBOOK_ONTOLOGY_METADATA_ID, postId);
 
         // Extra fields
-//        postData.insert(MEDIA_KEY, mediaList);
-//        postData.insert(IS_VIDEO_KEY, isVideo);
+        postData.insert(MEDIA_KEY, mediaList);
+        postData.insert(IS_VIDEO_KEY, isVideo);
 
         // From
-        QString fromId = postMap.value("actor_id").toString();
+        QString fromId = postMap.value("actor_id").toVariant().toString();
         QString fromName = names.value(fromId);
         QJsonObject fromData;
         fromData.insert(FACEBOOK_ONTOLOGY_OBJECTREFERENCE_OBJECTIDENTIFIER, fromId);
@@ -506,8 +508,8 @@ void FriendsIntegrationClient::slotFeedFinished()
         QString attachmentUrl = attachment.value("href").toString();
 
         // Facebook object id / type
-//        postData.insert(FACEBOOK_OBJECT_ID, attachment.value(FACEBOOK_OBJECT_ID));
-//        postData.insert(FACEBOOK_OBJECT_TYPE, attachment.value(FACEBOOK_OBJECT_TYPE));
+        postData.insert(FACEBOOK_OBJECT_ID, attachment.value(FACEBOOK_OBJECT_ID));
+        postData.insert(FACEBOOK_OBJECT_TYPE, attachment.value(FACEBOOK_OBJECT_TYPE));
 
         // Link
         postData.insert(FACEBOOK_ONTOLOGY_POST_LINK, attachmentUrl);

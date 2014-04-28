@@ -10,7 +10,8 @@ INCLUDEPATH += /home/sk/Code/SDK/SailfishOS/mersdk/targets/SailfishOS-armv7hl/us
 QT = core dbus network sql
 
 HEADERS += friendsintegrationclient.h \
-    friendsjsonpostdatabase.h
+    friendsjsonpostdatabase.h \
+    constants_p.h
 
 SOURCES += friendsintegrationclient.cpp \
     friendsjsonpostdatabase.cpp

@@ -81,5 +81,6 @@ dbus-send --system --type=method_call \
 %{_libdir}/buteo-plugins-qt5
 %{_sysconfdir}/buteo/profiles
 %{_libdir}/qt5/qml/org/SfietKonstantin/friends/integration
+%{_datadir}/lipstick/
 # >> files
 # << files
